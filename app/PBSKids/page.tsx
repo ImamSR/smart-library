@@ -18,6 +18,7 @@ export default function QuranPage() {
         className="mb-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-black transition"
       >
         <IoArrowBack className="text-2xl" />
+        Kembali
       </button>
 
       {/* IFRAMED CONTENT */}

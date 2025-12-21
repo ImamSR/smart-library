@@ -98,7 +98,7 @@ function SimulatorContent() {
         {/* Topics */}
         {simulation.topics && (
           <div className="flex gap-6">
-            <div className="flex-shrink-0 mt-1">
+            <div className="shrink-0 mt-1">
               <IoList className="text-2xl text-slate-700" />
             </div>
             <div>
@@ -115,7 +115,7 @@ function SimulatorContent() {
         {/* Learning Goals */}
         {simulation.learningGoals && (
           <div className="flex gap-6">
-            <div className="flex-shrink-0 mt-1">
+            <div className="shrink-0 mt-1">
               <MdGpsFixed className="text-2xl text-slate-700" />
             </div>
             <div>
@@ -134,7 +134,7 @@ function SimulatorContent() {
         {/* Inclusive Features */}
         {simulation.inclusiveFeatures && (
           <div className="flex gap-6">
-            <div className="flex-shrink-0 mt-1">
+            <div className="shrink-0 mt-1">
               <IoAccessibility className="text-2xl text-slate-700" />
             </div>
             <div>
@@ -165,7 +165,7 @@ function SimulatorContent() {
         {/* System Requirements */}
         {simulation.systemRequirements && (
           <div className="flex gap-6">
-            <div className="flex-shrink-0 mt-1">
+            <div className="shrink-0 mt-1">
               <MdComputer className="text-2xl text-slate-700" />
             </div>
             <div>

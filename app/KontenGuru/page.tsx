@@ -35,7 +35,7 @@ function ResourceCard({
       )}
 
       {/* Thumbnail */}
-      <div className="relative w-full aspect-[4/3] bg-teal-50">
+      <div className="relative w-full aspect-4/3 bg-teal-50">
         <Image
           src={resource.thumbnailUrl}
           alt={resource.title}
@@ -85,7 +85,7 @@ export default function KontenGuruPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900 font-sans">
+    <div className="min-h-screen bg-slate-50/80 text-slate-900 font-sans">
       <div className="max-w-7xl mx-auto px-6 py-12">
         {/* Header */}
         <div className="flex items-center gap-4 mb-10">

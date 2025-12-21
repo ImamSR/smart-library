@@ -1,45 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import ChatAssistant from "./components/ChatAssistant";
-import { motion, AnimatePresence } from "framer-motion";
-import { Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaQuran } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { FaRobot } from "react-icons/fa6";
-import {
-  MdAutoStories,
-  MdExplore,
-  MdOpenInNew,
-  MdSchool,
-  MdScience,
-  MdTranslate,
-} from "react-icons/md";
-import { IoIosArrowDown } from "react-icons/io";
+import MenuCard, { MenuCardData } from "./components/card/MenuCard";
 
-const iconMap = {
-  quran: FaQuran,
-  books: MdAutoStories,
-  science: MdScience,
-  translate: MdTranslate,
-  explore: MdExplore,
-  school: MdSchool,
-} as const;
-
-export type IconKey = keyof typeof iconMap;
-
-type LinkItem = { label: string; url: string };
-type ResourceCard = {
-  title: string;
-  subtitle?: string;
-  icon: IconKey;
-  gradient: string;
-  iconColor: string;
-  links: LinkItem[];
-};
-
-const resourceCards: ResourceCard[] = [
+const resourceCards: MenuCardData[] = [
   {
     title: "Quran Tafsir dan Hadist",
     subtitle: "Materi keagamaan lengkap.",
@@ -120,132 +88,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20,
-    },
-  },
-};
-
-function ResourceCardItem({ card }: { card: ResourceCard }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const Icon = iconMap[card.icon];
-
-  return (
-    <motion.div
-      layout
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="group relative bg-white/70 backdrop-blur-md rounded-2xl border border-white/20 shadow-sm hover:shadow-xl hover:scale-[1.01] transition-all duration-300 overflow-hidden"
-    >
-      <div
-        className="flex items-center justify-between px-6 py-5 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {/* left: icon + text */}
-        <div className="flex items-center gap-5">
-          <div
-            className={`h-14 w-14 rounded-2xl bg-gradient-to-br ${card.gradient}
-  flex items-center justify-center shadow-inner`}
-          >
-            <Icon className={`${card.iconColor} text-2xl`} />
-          </div>
-
-          <div>
-            <div className="text-lg font-bold text-slate-800 group-hover:text-blue-500 transition-colors">
-              {card.title}
-            </div>
-            {card.subtitle ? (
-              <div className="text-sm font-medium text-slate-500">
-                {card.subtitle}
-              </div>
-            ) : null}
-          </div>
-        </div>
-
-        {/* right: chevron (click to expand card content) */}
-        <div className="flex items-center">
-          <button
-            aria-label={isOpen ? "Collapse" : "Expand"}
-            className={`p-2 rounded-full transition-all duration-300 ${
-              isOpen ? "bg-slate-100" : "hover:bg-slate-100"
-            }`}
-          >
-            <IoIosArrowDown
-              className={`text-slate-500 transition-transform duration-300 text-xl ${
-                isOpen ? "rotate-180" : ""
-              }`}
-            />
-          </button>
-        </div>
-      </div>
-
-      {/* expanded content area with stacked buttons */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden"
-          >
-            <div className="border-t border-slate-100/50 px-6 py-4 bg-slate-50/50">
-              <div className="grid grid-cols-1 gap-3">
-                {card.links.map((l, i) => {
-                  const internal = l.url.startsWith("/");
-                  const btnBase =
-                    "w-full text-left px-4 py-3 rounded-xl border border-transparent bg-white/50 hover:bg-white hover:shadow-md transition-all flex items-center justify-between group/link";
-
-                  const content = (
-                    <>
-                      <span className="font-medium text-slate-700">
-                        {l.label}
-                      </span>
-                      <MdOpenInNew className="text-slate-400 group-hover/link:text-blue-500 transition-colors text-2xl font-extrabold" />
-                    </>
-                  );
-
-                  if (internal) {
-                    return (
-                      <Link key={l.url} href={l.url} className={btnBase}>
-                        {content}
-                      </Link>
-                    );
-                  }
-                  return (
-                    <a
-                      key={l.url}
-                      href={l.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={btnBase}
-                    >
-                      {content}
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
-
-export default function Page() {
+export default function Home() {
   const [query, setQuery] = useState("");
   const [isChatOpen, setIsChatOpen] = useState(false);
   const chatRef = useRef<HTMLDivElement | null>(null);
@@ -332,7 +175,7 @@ export default function Page() {
           </p>
 
           <div className="mx-auto max-w-2xl relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-emerald-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+            <div className="absolute -inset-1 bg-linear-to-r from-blue-400 to-emerald-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
             <div className="relative">
               <IoSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-black group-focus-within:text-blue-500 transition-colors z-10 text-xl" />
               <input
@@ -353,7 +196,7 @@ export default function Page() {
         >
           <div className="space-y-4">
             {filtered.map((card) => (
-              <ResourceCardItem key={card.title} card={card} />
+              <MenuCard key={card.title} card={card} />
             ))}
           </div>
         </motion.section>

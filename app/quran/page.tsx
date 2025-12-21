@@ -31,7 +31,7 @@ export default function QuranPage() {
       </div>
 
       {/* IFRAMED CONTENT */}
-      <div className="w-full h-[89vh] border rounded-lg overflow-hidden">
+      <div className="w-full h-[88vh] border rounded-lg overflow-hidden">
         <iframe
           key={iframeUrl} // forces reload when URL changes
           src={iframeUrl}

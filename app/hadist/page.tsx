@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { IoArrowBack } from "react-icons/io5";
+import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 
-export default function QuranPage() {
+export default function HadistPage() {
   const router = useRouter();
 
   // The ONLY iframe source; clicking menu buttons will change it.
@@ -13,13 +13,22 @@ export default function QuranPage() {
   return (
     <div style={{ padding: 24 }}>
       {/* BACK BUTTON */}
-      <button
-        onClick={() => router.push("/")}
-        className="mb-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-black transition"
-      >
-        <IoArrowBack className="text-2xl" />
-        Kembali
-      </button>
+      <div className="flex justify-between items-center">
+        <button
+          onClick={() => router.push("/")}
+          className="mb-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-black transition"
+        >
+          <IoArrowBack className="text-2xl" />
+          Kembali
+        </button>
+        <button
+          onClick={() => router.push("/quran")}
+          className="mb-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-black transition"
+        >
+          Quran
+          <IoArrowForward className="text-2xl" />
+        </button>
+      </div>
 
       {/* IFRAMED CONTENT */}
       <div className="w-full h-[89vh] border rounded-lg overflow-hidden">

@@ -1,21 +1,12 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { MdChildCare, MdClose, MdOutlineVisibility } from "react-icons/md";
-import { FaRegBookmark } from "react-icons/fa6";
-import { IoArrowBack, IoChevronBack, IoChevronForward } from "react-icons/io5";
-
-// --- Types & Mock Data ---
-type Book = {
-  id: string;
-  title: string;
-  author: string;
-  description: string;
-  coverGradient: string;
-  pdfUrl: string;
-};
+import { MdChildCare } from "react-icons/md";
+import { IoArrowBack } from "react-icons/io5";
+import VerticalBookCard, { Book } from "@/app/components/card/VerticalBookCard";
+import PaginationControls from "@/app/components/pagination/PaginationControls";
+import BookModal from "@/app/components/modal/BookModal";
 
 // Generate 32 dummy books for pagination demo
 const BOOKS: Book[] = [
@@ -133,155 +124,6 @@ const BOOKS: Book[] = [
 
 const ITEMS_PER_PAGE = 10;
 
-function VerticalBookCard({
-  book,
-  onRead,
-}: {
-  book: Book;
-  onRead: (b: Book) => void;
-}) {
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      className="group bg-white rounded-2xl p-4 shadow-sm border border-slate-100 flex flex-col sm:flex-row gap-6 hover:shadow-md transition-all duration-300"
-    >
-      {/* Cover */}
-      <div className="relative w-full sm:w-32 h-48 sm:h-auto sm:min-h-[12rem] rounded-xl overflow-hidden shadow-inner shrink-0 bg-slate-100">
-        <Image
-          src={book.coverGradient}
-          alt={book.title}
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 flex flex-col justify-center">
-        <h3 className="text-xl font-bold text-slate-800 mb-1 group-hover:text-primary transition-colors">
-          {book.title}
-        </h3>
-
-        <p className="text-sm font-medium text-slate-500 mb-3">{book.author}</p>
-
-        <p className="text-sm text-slate-600 line-clamp-2 mb-4">
-          {book.description}
-        </p>
-
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => onRead(book)}
-            className="px-5 py-2.5 rounded-lg bg-slate-900 text-white text-sm font-semibold hover:bg-primary hover:text-white transition-colors flex items-center gap-2"
-          >
-            <MdOutlineVisibility className="text-2xl" />
-            Baca Online
-          </button>
-
-          <button className="p-2.5 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 transition-colors">
-            <FaRegBookmark className="text-xl" />
-          </button>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-function PaginationControls({
-  currentPage,
-  totalPages,
-  onPageChange,
-}: {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (p: number) => void;
-}) {
-  return (
-    <div className="flex items-center justify-center gap-2 mt-12 mb-8">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="p-2 rounded-lg border border-slate-200 text-slate-600 disabled:opacity-50 hover:bg-blue-500 hover:text-white transition-colors"
-      >
-        <IoChevronBack className="text-xl" />
-      </button>
-
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-        <button
-          key={p}
-          onClick={() => onPageChange(p)}
-          className={`w-10 h-10 rounded-lg text-sm font-bold transition-all ${
-            currentPage === p
-              ? "bg-blue-500 text-white shadow-lg"
-              : "bg-white text-slate-600 hover:bg-slate-50 border border-transparent hover:border-blue-500"
-          }`}
-        >
-          {p}
-        </button>
-      ))}
-
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="p-2 rounded-lg border border-slate-200 text-slate-600 disabled:opacity-50 hover:bg-blue-500 hover:text-white transition-colors"
-      >
-        <IoChevronForward className="text-xl" />
-      </button>
-    </div>
-  );
-}
-
-function BookModal({
-  book,
-  onClose,
-}: {
-  book: Book | null;
-  onClose: () => void;
-}) {
-  if (!book) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-      <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
-        onClick={onClose}
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        className="relative w-full max-w-5xl h-[85vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
-      >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white">
-          <div>
-            <h2 className="text-lg font-bold text-slate-800 line-clamp-1">
-              {book.title}
-            </h2>
-            <p className="text-xs text-slate-500">{book.author}</p>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full text-slate-500 hover:bg-slate-100 transition-colors hover:text-black"
-          >
-            <MdClose className="text-2xl" />
-          </button>
-        </div>
-
-        <div className="flex-1 bg-slate-100 relative">
-          <iframe
-            src={book.pdfUrl}
-            className="w-full h-full border-0"
-            allow="autoplay"
-            title={book.title}
-          />
-        </div>
-      </motion.div>
-    </div>
-  );
-}
-
 export default function BukuAnakPage() {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
@@ -299,7 +141,7 @@ export default function BukuAnakPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900 font-sans">
+    <div className="min-h-screen bg-slate-50/80 text-slate-900 font-sans">
       <div className="max-w-5xl mx-auto px-6 py-12">
         {/* Header */}
         <div className="flex items-center gap-4 mb-10">
