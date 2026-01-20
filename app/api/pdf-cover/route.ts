@@ -22,17 +22,18 @@ export async function GET(req: Request) {
     // Render page
     const viewport = page.getViewport({ scale: 2 });
     const canvas = createCanvas(viewport.width, viewport.height);
-    const context = canvas.getContext("2d");
+    const context = canvas.getContext("2d") as unknown as CanvasRenderingContext2D;
 
     await page.render({
         canvasContext: context,
         viewport,
+        canvas: canvas as unknown as HTMLCanvasElement,
     }).promise;
 
     // Convert to image
     const imageBuffer = canvas.toBuffer("image/png");
 
-    return new NextResponse(imageBuffer, {
+    return new NextResponse(Buffer.from(imageBuffer), {
         headers: {
             "Content-Type": "image/png",
             "Cache-Control": "public, max-age=86400",
