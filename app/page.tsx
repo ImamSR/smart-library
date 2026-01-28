@@ -170,9 +170,12 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-extrabold mb-4 text-white">
-            Halo Anak-Anak,{" "}
-            <span className="text-blue-500">Selamat Datang!</span>
+          <h1 className="text-4xl font-extrabold mb-4 text-white">
+            Selamat Datang di
+            <br />
+            <span className="text-5xl text-yellow-300 ">
+              Perpustakaan Cendekia Muda!
+            </span>
           </h1>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto ">
             Platform pembelajaran interaktif untuk guru dan siswa. Jelajahi

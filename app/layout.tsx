@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
         <div className="relative min-h-screen bg-[url('/bg-baru.png')] bg-cover bg-center bg-no-repeat bg-fixed">
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-0" />
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-xs z-0" />
           <div className="relative z-10">{children}</div>
         </div>
       </body>
