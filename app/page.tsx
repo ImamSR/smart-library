@@ -20,14 +20,15 @@ const resourceCards: MenuCardData[] = [
     ],
   },
   {
-    title: "Buku dan Jurnal",
+    title: "Buku",
     subtitle: "Akses ribuan buku digital.",
     icon: "books",
     gradient: "from-emerald-50 to-emerald-100",
     iconColor: "text-emerald-600",
     links: [
-      { label: "Buku", url: "/DigiBook" },
-      { label: "Jurnal", url: "https://perpusnas.go.id" },
+      { label: "Buku", url: "https://budi.kemendikdasmen.go.id/" },
+      { label: "Google Books", url: "https://books.google.com/" },
+      // { label: "Jurnal", url: "https://perpusnas.go.id" },
     ],
   },
   {
@@ -36,7 +37,16 @@ const resourceCards: MenuCardData[] = [
     icon: "science",
     gradient: "from-purple-50 to-purple-100",
     iconColor: "text-purple-600",
-    links: [{ label: "Phet Interactive Simulations", url: "/phet" }],
+    links: [
+      {
+        label: "Phet Interactive Simulations",
+        url: "https://phet.colorado.edu/en/simulations/filter?type=html",
+      },
+      {
+        label: "Desmos",
+        url: "https://www.desmos.com/calculator?lang=id",
+      },
+    ],
   },
   {
     title: "Kamus Dan Terjemahan",
@@ -60,6 +70,10 @@ const resourceCards: MenuCardData[] = [
         label: "Google Arts & Culture",
         url: "https://artsandculture.google.com/",
       },
+      {
+        label: "Indonesia Virtual Tour",
+        url: "https://www.indonesiavirtualtour.com/vr-tourism",
+      },
     ],
   },
   // {
@@ -73,14 +87,14 @@ const resourceCards: MenuCardData[] = [
   //     { label: "Latihan Online", url: "https://example-questions.com" },
   //   ],
   // },
-  {
-    title: "By Cendekia Muda",
-    subtitle: "Materi eksklusif dari Cendekia Muda.",
-    icon: "school",
-    gradient: "from-teal-50 to-teal-100",
-    iconColor: "text-teal-600",
-    links: [{ label: "Konten Guru", url: "/KontenGuru" }],
-  },
+  // {
+  //   title: "By Cendekia Muda",
+  //   subtitle: "Materi eksklusif dari Cendekia Muda.",
+  //   icon: "school",
+  //   gradient: "from-teal-50 to-teal-100",
+  //   iconColor: "text-teal-600",
+  //   links: [{ label: "Konten Guru", url: "/KontenGuru" }],
+  // },
 ];
 
 const containerVariants = {
