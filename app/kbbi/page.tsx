@@ -8,7 +8,7 @@ export default function QuranPage() {
   const router = useRouter();
 
   // The ONLY iframe source; clicking menu buttons will change it.
-  const [iframeUrl, setIframeUrl] = useState("https://kbbi.kemdikbud.go.id/");
+  const [iframeUrl, setIframeUrl] = useState("https://kbbi.web.id/");
 
   return (
     <div style={{ padding: 24 }}>

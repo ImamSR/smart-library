@@ -16,7 +16,7 @@ const resourceCards: MenuCardData[] = [
     iconColor: "text-blue-600",
     links: [
       { label: "Al - Quran ", url: "/quran" },
-      { label: "Tazkia Hadis", url: "/hadist" },
+      { label: "Hadits", url: "/hadist" },
     ],
   },
   {
@@ -55,7 +55,12 @@ const resourceCards: MenuCardData[] = [
     icon: "explore",
     gradient: "from-rose-50 to-rose-100",
     iconColor: "text-rose-600",
-    links: [{ label: "PBS Kids", url: "/PBSKids" }],
+    links: [
+      {
+        label: "Google Arts & Culture",
+        url: "https://artsandculture.google.com/",
+      },
+    ],
   },
   // {
   //   title: "Bank Soal",
@@ -97,7 +102,7 @@ export default function Home() {
   const filtered = resourceCards.filter((c) =>
     (c.title + " " + (c.subtitle ?? ""))
       .toLowerCase()
-      .includes(query.toLowerCase())
+      .includes(query.toLowerCase()),
   );
 
   useEffect(() => {
