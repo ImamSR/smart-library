@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Learning Platform Dashboard with Chatbot",
+  title: "Perpustakaan Digital Cendekia Muda",
   description: "Platform pembelajaran untuk guru dan siswa",
 };
 
