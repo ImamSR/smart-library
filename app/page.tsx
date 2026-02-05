@@ -76,6 +76,20 @@ const resourceCards: MenuCardData[] = [
       },
     ],
   },
+  {
+    title: "Akses Dashboard",
+    subtitle: "Portal resmi SD Islam Cendekia Muda.",
+    icon: "dashboard",
+    gradient: "from-slate-50 to-slate-100",
+    iconColor: "text-slate-600",
+    links: [
+      {
+        label: "Dashboard SD Islam Cendekia Muda",
+        url: "https://sd.cendekiamuda.sch.id/",
+      },
+    ],
+  },
+
   // {
   //   title: "Bank Soal",
   //   subtitle: "Kumpulan soal latihan dan latihan ujian.",

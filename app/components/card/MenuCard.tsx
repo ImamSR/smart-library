@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
-import { MdOpenInNew } from "react-icons/md";
+import { MdDashboard, MdOpenInNew } from "react-icons/md";
 import { FaQuran } from "react-icons/fa";
 import {
   MdAutoStories,
@@ -19,6 +19,7 @@ export const iconMap = {
   translate: MdTranslate,
   explore: MdExplore,
   school: MdSchool,
+  dashboard: MdDashboard,
 } as const;
 
 export type IconKey = keyof typeof iconMap;
